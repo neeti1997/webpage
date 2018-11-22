@@ -1,0 +1,87 @@
+/******************************************************************************
+It is a simple link list implementation.
+
+
+
+*******************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+struct list
+{
+  int c, e;
+  struct list *next;
+
+
+};
+
+typedef struct list Node;
+Node *start = NULL, *neu, *last;
+
+Node *
+createNode ()
+{
+  Node *temp;
+  temp = (Node *) malloc (sizeof (Node));
+  return temp;
+}
+
+void
+createLL ()
+{
+  int n;
+  neu = createNode ();
+  printf ("Enter the data");
+  scanf ("%d", &n);
+  neu->c = n;
+  neu->next = NULL;
+  if (start == NULL)
+    {
+      start = last = neu;
+    }
+  else
+    {
+      last->next = neu;
+      last = last->next;
+    }
+}
+
+void
+display ()
+{
+  Node *ptr = start;
+  while (ptr != NULL)
+    {
+      printf ("\n%d", ptr->c);
+      ptr = ptr->next;
+    }
+}
+
+int
+main ()
+{
+  int ch;
+  while (1)
+    {
+
+      printf ("\nenter your choice 0. quit 1.add a node 2. display");
+      scanf (" %d", &ch);
+      switch (ch)
+	{
+	case 0:
+	  exit (0);
+	  break;
+	case 1:
+	  createLL ();
+	  break;
+	case 2:
+	  display ();
+	  break;
+	default:
+	  printf ("wrong entry");
+	}
+    }
+
+
+  return 0;
+}
+
